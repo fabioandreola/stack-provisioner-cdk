@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import * as cdk from '@aws-cdk/core';
-import { StackProvisionerCdkStack } from '../lib/stack-provisioner-cdk-stack';
+import { StackProvisionerBackendStack } from '../lib/stack-provisioner-backend';
+import { StackProvisionerFrontendStack } from '../lib/stack-provisioner-frontend';
 
 const app = new cdk.App();
-new StackProvisionerCdkStack(app, 'StackProvisionerCdkStack');
+new StackProvisionerBackendStack(app, 'StackProvisionerBackendStack');
+new StackProvisionerFrontendStack(app, 'StackProvisionerFrontendStack', { });

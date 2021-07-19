@@ -1,15 +1,25 @@
-# Welcome to your CDK TypeScript project!
+# Welcome to the Stack Provisioner App
 
-You should explore the contents of this project. It demonstrates a CDK app with an instance of a stack (`StackProvisionerCdkStack`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+This app provisions other stacks for demo purposes from a given token. A stack is provisioned for x minutes and it is deleted after that period but it can be re-provisoned using the same token for a configurable number of times.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+This is useful if you need to demo an application to a third-party but don't want to provision the stack in advance the demo and overpay for it.
 
-## Useful commands
+### Adding a demo application
 
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+```
+aws dynamodb put-item \
+    --table-name StackDetailsTable \
+    --item '{
+        "id": {"S": "xxxxx"}, // This must be an api key associated with the ApiGateway
+        "stackName": {"S": "Demo app"} ,
+        "stackLocation": {"S": "<bucket-url>/some-stack.yml"},
+        "maxCreationTimes": {"N": "3"},
+        "numTimesProvisioned": {"N": "0"},
+        "destroyInSeconds": {"N": "120"},
+        "stackStatus": {"S": ""},
+        "parameters": {"M": {
+            "<parameter name>": {"S": "parameter value"} //Only simple string parameters are supported
+        }
+    }
+}'
+```

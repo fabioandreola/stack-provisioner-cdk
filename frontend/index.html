@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <link href="css/styles.css" rel="stylesheet">
+
+    <title>Demo Application Provisioner</title>
+</head>
+
+<body class="bg-light">
+    <div class="container">
+        <div class="alert alert-success alert-dismissible fade show mt-1 position-absolute bottom-0 start-50 translate-middle-x visually-hidden" role="alert">
+            Your request was successfully submitted.
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show mt-1 position-absolute bottom-0 start-50 translate-middle-x visually-hidden" role="alert">
+        </div>
+        <main>
+            <div class="py-5 text-center">
+                <img class="d-block mx-auto mb-4" src="assets/aws-cloudformation.svg" alt="" width="72" height="57">
+                <h2>Demo Application Provisioner</h2>
+                <p class="lead">
+                    Type the key given to you below to provision the demo application. It will use behind the scenes AWS
+                    cloudformation to create all the necessary
+                    components and run your application on the cloud. You will receive all the details on how to access
+                    your application in your chosen notification email or you
+                    can leave this application running to get them here. </p>
+                </p>
+            </div>
+            <div class="row g-5">
+                <div class="col-md-7 col-lg-8 order-md-last">
+                    <h4 class="mb-3">
+                        Application details:
+                    </h4>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <label for="stack-name" class="form-label"><b>Name</b></label>
+                                <p name="stack-name" id="stack-name">-</p>
+                            </div>
+                            <div class="col-3">
+                                <label for="times-provisioned" class="form-label"><b>Times provisioned</b></label>
+                                <p name="times-provisioned" id="times-provisioned">-</p>
+                            </div>
+                            <div class="col-3">
+                                <label for="max-times-provisioned" class="form-label"><b>Provision allowance</b></label>
+                                <p name="max-times-provisioned" id="max-times-provisioned">-</p>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <label for="status" class="form-label"><b>Status</b></label>
+                                <p name="status" id="status">-</p>
+                            </div>
+                            <div class="col-6">
+                                <label for="destroy-time" class="form-label"><b>Available time</b></label>
+                                <p name="destroy-time" id="destroy-time">-</p>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <label for="links" class="form-label"><b>Links</b></label>
+                                <p name="links" id="links">-</p>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="col-md-5 col-lg-4">
+                    <h4 class="mb-3">
+                        Pameters:
+                    </h4>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="key" class="form-label">Application key</label>
+                                <input type="password" name="key" id="key" placeholder="62K72DAD8kxndz8YCvtGZ0NZV33jXiEXq" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label for="email" class="form-label">Notification email</label>
+                                <input type="text" name="email" id="email" placeholder="my-notification-email@example.com" class="form-control">
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                
+                <div class="col-md-5 col-lg-12 order-md-last">
+                    <hr class="my-4">
+                    <div class="row justify-content-evenly">
+                        <div class="col-4">
+                            <button type="button" class="btn btn-secondary" id="provision-btn">Provision Application</button>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-secondary" id="get-details-btn">
+                                <span class="spinner-grow-sm" role="status" aria-hidden="true" id="spinner"></span>
+                                Get Application Status</button>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+<script src="js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</html>
