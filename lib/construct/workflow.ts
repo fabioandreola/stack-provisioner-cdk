@@ -11,7 +11,8 @@ import { StateMachine } from '@aws-cdk/aws-stepfunctions';
 export interface WorkflowPoperties {
   sendEmailFunction: lambda.Function,
   stackManagementFunction: lambda.Function,
-  stackDetailsTable: dynamodb.Table
+  stackDetailsTable: dynamodb.Table,
+  maxWorflowDurationDays: number
 }
 
 enum StackStatus {
@@ -158,7 +159,7 @@ export class StackProvisionerWorkflow extends Construct {
 
     this.stateMachine = new sfn.StateMachine(scope, 'StateMachine', {
       definition: workflowDefinition,
-      timeout: Duration.days(1),
+      timeout: Duration.days(props.maxWorflowDurationDays),
       logs: {
         destination: stepFunctionLogGroup,
         level: sfn.LogLevel.ERROR

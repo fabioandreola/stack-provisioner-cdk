@@ -16,6 +16,12 @@ export class StackProvisionerBackendStack extends cdk.Stack {
     super(scope, id, props);
 
     // Parameters
+
+    const maxWorflowDurationDays = new CfnParameter(this, "MaxWorkflowDurationDays", {
+      type: "Number",
+      description: "The max duration for the step function workflow. This should be longer then you intend to keep your stacks running.",
+      default: 1});
+
     const stackBucketNameParam = new CfnParameter(this, "StackBucketName", {
       type: "String",
       description: "The name of the Amazon S3 bucket where stacks will be stored.",
@@ -154,7 +160,8 @@ export class StackProvisionerBackendStack extends cdk.Stack {
     const stackProvisionerWorkflow = new StackProvisionerWorkflow(this, 'StackProvisionerWorkflow', { 
       sendEmailFunction, 
       stackManagementFunction, 
-      stackDetailsTable
+      stackDetailsTable,
+      maxWorflowDurationDays: maxWorflowDurationDays.valueAsNumber
     });
 
     stackProvisionerApiFunction.addEnvironment("STACK_PROVISIONER_WORKFLOW_ARN", stackProvisionerWorkflow.stateMachine.stateMachineArn);
