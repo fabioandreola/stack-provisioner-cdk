@@ -152,7 +152,7 @@ aws dynamodb put-item \
 And that is it! Just give the API key to whoever you want to have access to provision this stack and the URL you chose for the frontend app and wait for compliments (hopefully)
  
 ## Future Improvements
-  Because this is a pet project I did at night with no real goal in mind other than keep me entertained there are a few things that I left off but should be improved eventually:
+  Due to the time constraints I had for this pet project there were a few things that I left out but should be improved eventually:
  
  - The source code for lambdas is just a first interaction and could be further refactored to do one thing only.
  
