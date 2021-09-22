@@ -141,6 +141,7 @@ aws dynamodb put-item \
        "stackLocation": {"S": "https://<StackBucketName>.s3.<region>amazonaws.com/demo-stack.yml"} // URL from step 6,
        "maxCreationTimes": {"N": "3"} // how many times this stack can provisioned,
        "destroyInSeconds": {"N": "120"} //How many seconds it is up before it is automatically destroyed,
+       "numTimesProvisioned": {"N": "0"} //start with 0,
        "stackStatus": {"S": ""}, //leave it blank
        "parameters": {"M": {
            "<parameter name>": {"S": "parameter value"} //Only simple string parameters are supported
