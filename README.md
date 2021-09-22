@@ -94,7 +94,7 @@ https://<subdomain>.<domain>
  
 ## Configuring a demo application in the Stack Provisioner
  
-1. Find the id for the Stack Provisioner API and take not of it
+1. Find the id for the Stack Provisioner API and take note of it
  
 ```
 aws apigateway get-rest-apis
